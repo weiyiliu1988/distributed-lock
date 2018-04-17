@@ -1,7 +1,6 @@
 package cn.com.studyshop.zk.demo;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 import org.I0Itec.zkclient.IZkChildListener;
 import org.I0Itec.zkclient.IZkDataListener;
@@ -15,7 +14,7 @@ import org.I0Itec.zkclient.ZkClient;
 public class ZKDemo {
 
 	public static void main(String[] args) {
-		ZkClient client = new ZkClient("47.93.225.67:2181");
+		ZkClient client = new ZkClient("47.93.*:2181");
 		client.setZkSerializer(new MyZkSerializer());
 
 		client.subscribeDataChanges("/edward", new IZkDataListener() {
@@ -35,19 +34,25 @@ public class ZKDemo {
 			}
 
 		});
-/*
+
 		client.subscribeChildChanges("/edward", new IZkChildListener() {
 
 			@Override
-			public void handleChildChange(String parentPath, List<String> currentChilds) throws Exception {
-				// TODO Auto-generated method stub
-				System.out.println("handleChildChange-->" + parentPath);
-				Stream.of(currentChilds).forEach(o -> {
-					System.out.println(o);
-				});
+			public void handleChildChange(String parentPath, List<String> currentChilds) throws Exception { // TODO
+				// stub
+				System.out.println("handleChildChange-->" + parentPath + "   size:" + currentChilds.size());
+
+				System.out.println("bbq->" + currentChilds.get(0));
+				System.out.println("::" + currentChilds);
 			}
 
-		});*/
+		});
 
+		try {
+			Thread.sleep(600000); // 10minutes
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
