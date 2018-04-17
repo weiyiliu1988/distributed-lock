@@ -4,9 +4,9 @@ import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
 import cn.com.studyshop.api.OrderService;
-import cn.com.studyshop.distribute.service.OrderServiceSyn;
+import cn.com.studyshop.distribute.service.OrderServiceLock;
 
-public class CycleBarrierDemo {
+public class LockDemo {
 
 	public static void main(String[] args) {
 
@@ -17,7 +17,7 @@ public class CycleBarrierDemo {
 
 		for (int i = 0; i < currs; i++) {
 			new Thread(new Runnable() {
-				OrderService orderService = new OrderServiceSyn();
+				OrderService orderService = new OrderServiceLock();
 
 				@Override
 				public void run() {
