@@ -14,7 +14,7 @@ import org.I0Itec.zkclient.ZkClient;
 public class ZKDemo {
 
 	public static void main(String[] args) {
-		ZkClient client = new ZkClient("47.93.*:2181");
+		ZkClient client = new ZkClient("47.:2181");
 		client.setZkSerializer(new MyZkSerializer());
 
 		client.subscribeDataChanges("/edward", new IZkDataListener() {

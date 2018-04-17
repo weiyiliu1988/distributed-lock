@@ -3,6 +3,7 @@ package cn.com.studyshop.distribute.lock;
 import java.util.concurrent.CountDownLatch;
 
 import cn.com.studyshop.api.OrderService;
+import cn.com.studyshop.distribute.service.OrderServiceDistributedLock;
 import cn.com.studyshop.distribute.service.OrderServiceLock;
 
 /**
@@ -19,8 +20,8 @@ public class CountDownLatchDemo {
 
 		for (int i = 0; i < currs; i++) {
 			new Thread(new Runnable() {
-				OrderService orderService = new OrderServiceLock();
-
+				//OrderService orderService = new OrderServiceLock();
+				OrderService orderService = new OrderServiceDistributedLock();
 				@Override
 				public void run() {
 					// TODO Auto-generated method stub
