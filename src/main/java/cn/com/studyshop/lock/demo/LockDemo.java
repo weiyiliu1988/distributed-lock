@@ -1,36 +1,36 @@
-package cn.com.studyshop.distribute.lock;
+package cn.com.studyshop.lock.demo;
 
-import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.BrokenBarrierException;
+import java.util.concurrent.CyclicBarrier;
 
 import cn.com.studyshop.api.OrderService;
-import cn.com.studyshop.distribute.service.OrderServiceDistributedLock;
 import cn.com.studyshop.distribute.service.OrderServiceLock;
 
-/**
- * 
- * @author LIU
- *
- */
-public class CountDownLatchDemo {
+public class LockDemo {
 
 	public static void main(String[] args) {
-		// 并发数
+
 		int currs = 20;
-		CountDownLatch cdl = new CountDownLatch(currs);
+
+		// 循环屏障
+		CyclicBarrier cb = new CyclicBarrier(currs);
 
 		for (int i = 0; i < currs; i++) {
 			new Thread(new Runnable() {
-				//OrderService orderService = new OrderServiceLock();
-				OrderService orderService = new OrderServiceDistributedLock();
+				OrderService orderService = new OrderServiceLock();
+
 				@Override
 				public void run() {
 					// TODO Auto-generated method stub
-
-					cdl.countDown();
 					try {
-						cdl.await();
+						System.out.println("wait");
+						cb.await();
+						System.out.println("notify");
 						orderService.createOrderNO();
 					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (BrokenBarrierException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
@@ -38,5 +38,6 @@ public class CountDownLatchDemo {
 
 			}).start();
 		}
+
 	}
 }

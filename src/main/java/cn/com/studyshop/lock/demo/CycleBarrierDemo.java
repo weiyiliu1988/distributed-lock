@@ -1,4 +1,4 @@
-package cn.com.studyshop.distribute.lock;
+package cn.com.studyshop.lock.demo;
 
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
