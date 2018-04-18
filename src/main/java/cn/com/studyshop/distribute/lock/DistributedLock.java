@@ -36,28 +36,28 @@ public class DistributedLock implements Lock {
 	private void waitForLock() {
 		// 自旋处理
 
-		CountDownLatch cdl = new CountDownLatch(1);
+		CountDownLatch cdl = new CountDownLatch(1); // 每次进行初始化
 		IZkDataListener listener = new IZkDataListener() {
 
 			@Override
 			public void handleDataChange(String dataPath, Object data) throws Exception {
 				// data被删除(即节点被删除)
 				System.out.println("删除节点--->" + dataPath);
-				cdl.countDown();
+				cdl.countDown();// 惊群效应
 
 			}
 
 			@Override
 			public void handleDataDeleted(String dataPath) throws Exception {
-				// TODO Auto-generated method stub
+				// doNothing
 
 			}
 
 		};
 
-		this.zkClient.subscribeDataChanges(this.lockPath, listener); // 所有线程节点加监听(惊群效应)
+		this.zkClient.subscribeDataChanges(this.lockPath, listener); // 所有线程节点加监听(侦听模式watchForData)
 
-		if (this.zkClient.exists(this.lockPath)) {
+		if (this.zkClient.exists(this.lockPath)) { // 特别要注意的地方,在lock节点没有创建的时候，如果没有此部判断直接进入阻塞（不可控），如果不存在
 			try {
 				System.out.println("进入自旋------");
 				cdl.await(); // 阻塞
@@ -65,7 +65,7 @@ public class DistributedLock implements Lock {
 				e.printStackTrace();
 			}
 		}
-		this.zkClient.unsubscribeDataChanges(this.lockPath, listener);
+		this.zkClient.unsubscribeDataChanges(this.lockPath, listener); // 取消注册侦听
 	}
 
 	@Override

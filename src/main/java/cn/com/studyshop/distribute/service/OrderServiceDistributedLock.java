@@ -15,7 +15,7 @@ import cn.com.studyshop.distribute.lock.DistributedLock;
  *
  */
 public class OrderServiceDistributedLock implements OrderService {
-	private static Lock lock = new DistributedLock("/lock", "47.93.225.67:2181");
+	private static Lock lock = new DistributedLock("/lock", "47.*:2181");
 	private static volatile Integer num = 0;
 
 	/*
