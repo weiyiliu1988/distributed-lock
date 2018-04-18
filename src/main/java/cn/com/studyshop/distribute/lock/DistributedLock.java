@@ -17,6 +17,7 @@ public class DistributedLock implements Lock {
 
 	public DistributedLock(String lockPath, String services) {
 		super();
+		System.out.println("初始化锁处理开始...");
 		this.lockPath = lockPath;
 		this.zkClient = new ZkClient(services);
 		zkClient.setZkSerializer(new MyZkSerializer());
@@ -58,6 +59,7 @@ public class DistributedLock implements Lock {
 
 		if (this.zkClient.exists(this.lockPath)) {
 			try {
+				System.out.println("进入自旋------");
 				cdl.await(); // 阻塞
 			} catch (InterruptedException e) {
 				e.printStackTrace();
