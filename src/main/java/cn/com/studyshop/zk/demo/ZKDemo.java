@@ -1,10 +1,19 @@
 package cn.com.studyshop.zk.demo;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import org.I0Itec.zkclient.IZkChildListener;
 import org.I0Itec.zkclient.IZkDataListener;
 import org.I0Itec.zkclient.ZkClient;
+import org.apache.zookeeper.ZooDefs;
+import org.apache.zookeeper.data.ACL;
+import org.apache.zookeeper.data.Id;
+import org.apache.zookeeper.server.auth.DigestAuthenticationProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.google.common.collect.Lists;
 
 /**
  * 
@@ -12,6 +21,8 @@ import org.I0Itec.zkclient.ZkClient;
  *
  */
 public class ZKDemo {
+
+	private static Logger logger = LoggerFactory.getLogger(ZKDemo.class);
 
 	public static void main(String[] args) {
 		ZkClient client = new ZkClient("47.*:2181");
@@ -48,6 +59,31 @@ public class ZKDemo {
 
 		});
 
+		/*
+		 * _
+		 * 
+		 * [31,s{'world,'anyone} ]
+		 * 
+		 */
+		List<ACL> aclList = client.getAcl("/edward").getKey();
+		aclList.forEach(o -> {
+			System.out.println("-----------");
+			System.out.println(o);
+		});
+
+		List<ACL> seqAclList = Lists.newArrayList();
+		Id id1 = null;
+		try {
+			id1 = new Id("digest", DigestAuthenticationProvider.generateDigest("fish:fishpw"));
+		} catch (NoSuchAlgorithmException e1) {
+			e1.printStackTrace();
+		}
+		seqAclList.add(new ACL(ZooDefs.Perms.ALL, id1));
+
+		// 创建持久顺序节点
+		String path = client.createPersistentSequential("/edward/seq/", "seq", seqAclList);
+		System.out.println("------------");
+		logger.debug("path is :{}", path);
 		try {
 			Thread.sleep(600000); // 10minutes
 		} catch (InterruptedException e) {
