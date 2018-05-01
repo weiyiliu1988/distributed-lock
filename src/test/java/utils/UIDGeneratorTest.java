@@ -11,29 +11,29 @@ public class UIDGeneratorTest {
 
 	@Test
 	public void generatorStrTest() {
-		System.out.println(UIDGenerator.getInstance("47.93.225.67:2181").generatorStr());
-		System.out.println(UIDGenerator.getInstance("47.93.225.67:2181").generatorStr());
-		System.out.println(UIDGenerator.getInstance("47.93.225.67:2181").generatorStr());
-		System.out.println(UIDGenerator.getInstance("47.93.225.67:2181").generatorStr());
-		System.out.println(UIDGenerator.getInstance("47.93.225.67:2181").generatorStr());
-		System.out.println(UIDGenerator.getInstance("47.93.225.67:2181").generatorStr());
-		System.out.println(UIDGenerator.getInstance("47.93.225.67:2181").generatorStr());
-		System.out.println(UIDGenerator.getInstance("47.93.225.67:2181").generatorStr());
-		System.out.println(UIDGenerator.getInstance("47.93.225.67:2181").generatorStr());
-		System.out.println(UIDGenerator.getInstance("47.93.225.67:2181").generatorStr());
-		System.out.println(UIDGenerator.getInstance("47.93.225.67:2181").generatorStr());
-		System.out.println(UIDGenerator.getInstance("47.93.225.67:2181").generatorStr());
-		System.out.println(UIDGenerator.getInstance("47.93.225.67:2181").generatorStr());
-		System.out.println(UIDGenerator.getInstance("47.93.225.67:2181").generatorStr());
-		System.out.println(UIDGenerator.getInstance("47.93.225.67:2181").generatorStr());
-		System.out.println(UIDGenerator.getInstance("47.93.225.67:2181").generatorStr());
+		System.out.println(UIDGenerator.getInstance("47.*:2181").generatorStr());
+		System.out.println(UIDGenerator.getInstance("47.*:2181").generatorStr());
+		System.out.println(UIDGenerator.getInstance("47.*:2181").generatorStr());
+		System.out.println(UIDGenerator.getInstance("47.*:2181").generatorStr());
+		System.out.println(UIDGenerator.getInstance("47.*:2181").generatorStr());
+		System.out.println(UIDGenerator.getInstance("47.*:2181").generatorStr());
+		System.out.println(UIDGenerator.getInstance("47.*:2181").generatorStr());
+		System.out.println(UIDGenerator.getInstance("47.*:2181").generatorStr());
+		System.out.println(UIDGenerator.getInstance("47.*:2181").generatorStr());
+		System.out.println(UIDGenerator.getInstance("47.*:2181").generatorStr());
+		System.out.println(UIDGenerator.getInstance("47.*:2181").generatorStr());
+		System.out.println(UIDGenerator.getInstance("47.*:2181").generatorStr());
+		System.out.println(UIDGenerator.getInstance("47.*:2181").generatorStr());
+		System.out.println(UIDGenerator.getInstance("47.*:2181").generatorStr());
+		System.out.println(UIDGenerator.getInstance("47.*:2181").generatorStr());
+		System.out.println(UIDGenerator.getInstance("47.*:2181").generatorStr());
 
 	}
 
 	@Test
 	public void generatorIntTest() {
-		System.out.println(UIDGenerator.getInstance("47.93.225.67:2181").generatorInt());
-		System.out.println(UIDGenerator.getInstance("47.93.225.67:2181").generatorInt());
+		System.out.println(UIDGenerator.getInstance("47.*:2181").generatorInt());
+		System.out.println(UIDGenerator.getInstance("47.*:2181").generatorInt());
 	}
 
 	@Test
@@ -53,7 +53,7 @@ public class UIDGeneratorTest {
 					} finally {
 						// doNothing
 					}
-					System.out.println(UIDGenerator.getInstance("47.93.225.67:2181").generatorInt());
+					System.out.println(UIDGenerator.getInstance("47.*:2181").generatorInt());
 				}
 
 			}).start();
