@@ -25,10 +25,10 @@ public class ZKDemo {
 	private static Logger logger = LoggerFactory.getLogger(ZKDemo.class);
 
 	public static void main(String[] args) {
-		ZkClient client = new ZkClient("47.*:2181");
+		ZkClient client = new ZkClient("*:2181");
 		client.setZkSerializer(new MyZkSerializer());
 
-		client.subscribeDataChanges("/edward", new IZkDataListener() {
+		client.subscribeDataChanges("/bbc", new IZkDataListener() {
 
 			@Override
 			public void handleDataChange(String dataPath, Object data) throws Exception {
